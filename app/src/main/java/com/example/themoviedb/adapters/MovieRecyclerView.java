@@ -3,6 +3,7 @@ package com.example.themoviedb.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,19 +18,32 @@ import java.util.List;
 public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<MovieModel> mMovies;
+    private boolean imageFull;
+    private String type;
 
+    private OnMovieListerner onMovieListerner;
+
+    public MovieRecyclerView(OnMovieListerner onMovieListerner, boolean imageFull, String type) {
+        this.onMovieListerner = onMovieListerner;
+        this.imageFull = imageFull;
+        this.type = type;
+    }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_item, parent, false);
-        return new MovieViewHolder(view);
+        return new MovieViewHolder(view, onMovieListerner, type);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Glide.with(holder.itemView.getContext()).load(Credenciales.URL_IMAGES +mMovies.get(position).getPoster_path()).into(((MovieViewHolder) holder).movie_image);
+        ImageView imageView = ((MovieViewHolder) holder).movie_image;
+        if(this.imageFull){
+            imageView.getLayoutParams().height = 420;
+        }
+        Glide.with(holder.itemView.getContext()).load(Credenciales.URL_IMAGES +mMovies.get(position).getPoster_path()).into(imageView);
     }
 
     @Override

@@ -8,19 +8,21 @@ public class MovieModel implements Parcelable {
 
     private String title;
     private String poster_path;
-    private int movie_id;
+    private int id;
+    private int total_results;
 
 
-    public MovieModel(String title, String poster_path, int movie_id) {
+    public MovieModel(String title, String poster_path, int id, int total_results) {
         this.title = title;
         this.poster_path = poster_path;
-        this.movie_id = movie_id;
+        this.id = id;
     }
 
     protected MovieModel(Parcel in) {
         title = in.readString();
         poster_path = in.readString();
-        movie_id = in.readInt();
+        id = in.readInt();
+        total_results = in.readInt();
     }
 
     public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
@@ -43,8 +45,12 @@ public class MovieModel implements Parcelable {
         return poster_path;
     }
 
-    public int getMovie_id() {
-        return movie_id;
+    public int getId() {
+        return id;
+    }
+
+    public int getTotal_results() {
+        return total_results;
     }
 
     public void setTitle(String title) {
@@ -55,8 +61,12 @@ public class MovieModel implements Parcelable {
         this.poster_path = poster_path;
     }
 
-    public void setMovie_id(int movie_id) {
-        this.movie_id = movie_id;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTotal_results(int total_results) {
+        this.total_results = total_results;
     }
 
     @Override
@@ -68,6 +78,7 @@ public class MovieModel implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(title);
         parcel.writeString(poster_path);
-        parcel.writeInt(movie_id);
+        parcel.writeInt(id);
+        parcel.writeInt(total_results);
     }
 }

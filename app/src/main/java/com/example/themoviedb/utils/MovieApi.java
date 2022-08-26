@@ -16,10 +16,20 @@ public interface MovieApi {
             @Query("api_key") String api_key
     );
 
+    @GET("3/movie/upcoming?")
+    Call<MovieListResponse>  upcoming(
+            @Query("api_key") String api_key
+    );
+
     @GET("3/movie/{movie_id}")
     Call<MovieModel> detail(
             @Path("movie_id") int movie_id,
             @Query("api_key") String api_key
     );
 
+    @GET("3/movie/{movie_id}/recommendations?")
+    Call<MovieListResponse> recommendations(
+            @Path("movie_id") int movie_id,
+            @Query("api_key") String api_key
+    );
 }

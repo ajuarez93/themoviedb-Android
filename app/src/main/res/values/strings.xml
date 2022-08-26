@@ -3,4 +3,8 @@
     <string name="proximos_estrenos">Próximos estrenos</string>
     <string name="tendencia">Tendencia</string>
     <string name="recomendados">Recomendados para ti</string>
+    <string name="btn_espaniol">En español</string>
+    <string name="btn_1993">Lanzadas en 1993</string>
+    <string name="based">Debe de seleccionar una pelicula de Tendencias para ver las recomendados</string>
+    <string name="result">No se han encontrado resultados para la pelicula seleccionada, favor de seleccionar otra</string>
 </resources>
