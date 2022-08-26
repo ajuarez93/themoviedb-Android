@@ -47,35 +47,30 @@
         android:textStyle="bold"
         android:textColor="#FFFFFF"
         android:textSize="20sp"></TextView>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/based"
-        android:id="@+id/based_text"
-        android:textColor="#FFFFFF"
-        android:textSize="10sp"></TextView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cornerRadius="12dp"
             android:textSize="10sp"
-            app:strokeColor="@color/white"
             android:textColor="@color/white"
+            app:strokeColor="@color/white"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_margin="2dp"
+            app:cornerRadius="12dp"
+            android:id="@+id/btn_espaniol"
             android:text="@string/btn_espaniol"></com.google.android.material.button.MaterialButton>
         <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cornerRadius="12dp"
             android:textSize="10sp"
-            app:strokeColor="@color/white"
             android:textColor="@color/white"
+            app:strokeColor="@color/white"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_margin="2dp"
+            app:cornerRadius="12dp"
+            android:id="@+id/btn_1993"
             android:text="@string/btn_1993"></com.google.android.material.button.MaterialButton>
     </LinearLayout>
     <TextView
@@ -87,6 +82,6 @@
         android:textSize="10sp"></TextView>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:id="@+id/recyclerViewRecommendations" />
+        android:layout_height="wrap_content" android:id="@+id/recyclerViewDiscover" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

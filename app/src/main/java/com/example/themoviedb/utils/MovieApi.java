@@ -32,4 +32,11 @@ public interface MovieApi {
             @Path("movie_id") int movie_id,
             @Query("api_key") String api_key
     );
+
+    @GET("3/discover/movie?")
+    Call<MovieListResponse> discover(
+            @Query("api_key") String api_key,
+            @Query("with_original_language") String with_original_language,
+            @Query("year") String year
+    );
 }
