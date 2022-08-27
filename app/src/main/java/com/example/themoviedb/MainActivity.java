@@ -13,7 +13,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.themoviedb.adapters.MovieRecyclerView;
-import com.example.themoviedb.adapters.OnMovieListerner;
+import com.example.themoviedb.adapters.OnMovieListener;
 import com.example.themoviedb.models.MovieModel;
 import com.example.themoviedb.request.Services;
 import com.example.themoviedb.response.MovieListResponse;
@@ -28,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements OnMovieListerner {
+public class MainActivity extends AppCompatActivity implements OnMovieListener {
 
     private RecyclerView recyclerViewTrending, recyclerViewUpComing, recyclerViewDiscover;
     private MovieRecyclerView movieRecyclerTrendingAdapter, movieRecyclerUpComingAdapter, movieRecyclerDiscoverAdapter;
@@ -225,8 +225,8 @@ public class MainActivity extends AppCompatActivity implements OnMovieListerner 
         if(movieModel != null){
             Intent intent = new Intent(MainActivity.this, DetailActivity.class);
             Bundle b = new Bundle();
-            b.putInt("id", movieModel.getId()); //Your id
-            intent.putExtras(b); //Put your id to your next Intent
+            b.putInt("id", movieModel.getId());
+            intent.putExtras(b);
             startActivity(intent);
         }
 

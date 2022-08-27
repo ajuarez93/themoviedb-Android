@@ -1,7 +1,9 @@
 package com.example.themoviedb.utils;
 
 import com.example.themoviedb.models.MovieModel;
+import com.example.themoviedb.models.VideoModel;
 import com.example.themoviedb.response.MovieListResponse;
+import com.example.themoviedb.response.VideoListResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -39,4 +41,11 @@ public interface MovieApi {
             @Query("with_original_language") String with_original_language,
             @Query("year") String year
     );
+
+    @GET("3/movie/{movie_id}/videos?")
+    Call<VideoListResponse> videos(
+            @Path("movie_id") int movie_id,
+            @Query("api_key") String api_key
+    );
+
 }

@@ -21,10 +21,10 @@ public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHol
     private int imageType;
     private String type;
 
-    private OnMovieListerner onMovieListerner;
+    private OnMovieListener onMovieListener;
 
-    public MovieRecyclerView(OnMovieListerner onMovieListerner, int imageType, String type) {
-        this.onMovieListerner = onMovieListerner;
+    public MovieRecyclerView(OnMovieListener onMovieListener, int imageType, String type) {
+        this.onMovieListener = onMovieListener;
         this.imageType = imageType;
         this.type = type;
     }
@@ -33,7 +33,7 @@ public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_item, parent, false);
-        return new MovieViewHolder(view, onMovieListerner, type);
+        return new MovieViewHolder(view, onMovieListener, type);
 
     }
 
@@ -46,7 +46,9 @@ public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHol
         if(this.imageType == 2){
             imageView.getLayoutParams().height = 220;
         }
-        Glide.with(holder.itemView.getContext()).load(Credenciales.URL_IMAGES +mMovies.get(position).getPoster_path()).into(imageView);
+        if(mMovies.get(position).getPoster_path() != null){
+            Glide.with(holder.itemView.getContext()).load(Credenciales.URL_IMAGES +mMovies.get(position).getPoster_path()).into(imageView);
+        }
     }
 
     @Override

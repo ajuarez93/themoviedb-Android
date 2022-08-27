@@ -12,18 +12,19 @@ public class MovieViewHolder extends RecyclerView.ViewHolder  implements View.On
 
     ImageView movie_image;
     private String type;
-    OnMovieListerner onMovieListerner;
+    OnMovieListener onMovieListener;
 
-    public MovieViewHolder(@NonNull View itemView, OnMovieListerner onMovieListerner, String type) {
+    public MovieViewHolder(@NonNull View itemView, OnMovieListener onMovieListener, String type) {
         super(itemView);
-        this.onMovieListerner = onMovieListerner;
+        this.onMovieListener = onMovieListener;
         this.type = type;
         movie_image = itemView.findViewById(R.id.movie_image);
         movie_image.setOnClickListener(this);
     }
 
+
     @Override
     public void onClick(View view) {
-        onMovieListerner.onMovieClick(getAdapterPosition(), this.type);
+        onMovieListener.onMovieClick(getAdapterPosition(), this.type);
     }
 }

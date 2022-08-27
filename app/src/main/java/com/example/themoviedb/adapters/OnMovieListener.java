@@ -1,6 +1,6 @@
 package com.example.themoviedb.adapters;
 
-public interface OnMovieListerner {
+public interface OnMovieListener {
     void onMovieClick(int position, String type);
 
 }
