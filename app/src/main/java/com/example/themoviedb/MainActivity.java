@@ -5,15 +5,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.themoviedb.adapters.MovieRecyclerView;
 import com.example.themoviedb.adapters.OnMovieListerner;
@@ -35,9 +32,9 @@ public class MainActivity extends AppCompatActivity implements OnMovieListerner 
 
     private RecyclerView recyclerViewTrending, recyclerViewUpComing, recyclerViewDiscover;
     private MovieRecyclerView movieRecyclerTrendingAdapter, movieRecyclerUpComingAdapter, movieRecyclerDiscoverAdapter;
-    private List<MovieModel> moviesTrending;
+    private List<MovieModel> moviesTrending, moviesUpComing, moviesDiscover;
     private TextView result_text;
-    private MaterialButton btn_1993, btn_espaniol;
+    private MaterialButton btn_1993, btn_spanish;
 
 
     @Override
@@ -50,28 +47,28 @@ public class MainActivity extends AppCompatActivity implements OnMovieListerner 
         setContentView(R.layout.activity_main);
 
         recyclerViewTrending = findViewById(R.id.recyclerViewTrending);
-        recyclerViewUpComing= findViewById(R.id.recyclerViewUpComig);
+        recyclerViewUpComing= findViewById(R.id.recyclerViewUpComing);
         recyclerViewDiscover= findViewById(R.id.recyclerViewDiscover);
         result_text = findViewById(R.id.result_text);
 
-        btn_espaniol =  findViewById(R.id.btn_espaniol);
-        btn_1993 =  findViewById(R.id.btn_1993);
+        btn_spanish =  findViewById(R.id.btn_filter_spanish);
+        btn_1993 =  findViewById(R.id.btn_filter_1993);
 
-        btn_espaniol.setCheckable(true);
-        btn_espaniol.addOnCheckedChangeListener((button, isChecked) -> {
+        btn_spanish.setCheckable(true);
+        btn_spanish.addOnCheckedChangeListener((button, isChecked) -> {
             if(isChecked){
-                btn_espaniol.setBackgroundColor(getResources().getColor(android.R.color.white));
-                btn_espaniol.setTextColor(getResources().getColor(android.R.color.black));
+                btn_spanish.setBackgroundColor(getResources().getColor(android.R.color.white));
+                btn_spanish.setTextColor(getResources().getColor(android.R.color.black));
             }else{
-                btn_espaniol.setBackgroundColor(getResources().getColor(android.R.color.black));
-                btn_espaniol.setTextColor(getResources().getColor(android.R.color.white));
+                btn_spanish.setBackgroundColor(getResources().getColor(android.R.color.black));
+                btn_spanish.setTextColor(getResources().getColor(android.R.color.white));
             }
-            String espaniol = "";
-            if(isChecked) espaniol = "es";
+            String spanish = "";
+            if(isChecked) spanish = "es";
             String year = "";
             if(btn_1993.isChecked()) year = "1993";
 
-            GetRetrofitResponseDiscover(espaniol, year);
+            GetRetrofitResponseDiscover(spanish, year);
         });
 
         btn_1993.setCheckable(true);
@@ -84,12 +81,12 @@ public class MainActivity extends AppCompatActivity implements OnMovieListerner 
                 btn_1993.setTextColor(getResources().getColor(android.R.color.white));
             }
 
-            String espaniol = "";
-            if(btn_espaniol.isChecked()) espaniol = "es";
+            String spanish = "";
+            if(btn_spanish.isChecked()) spanish = "es";
             String year = "";
             if(isChecked) year = "1993";
 
-            GetRetrofitResponseDiscover(espaniol, year);
+            GetRetrofitResponseDiscover(spanish, year);
 
         });
 
@@ -153,50 +150,8 @@ public class MainActivity extends AppCompatActivity implements OnMovieListerner 
             @Override
             public void onResponse(Call<MovieListResponse> call, Response<MovieListResponse> response) {
                 if (response.code() == 200){
-                    List<MovieModel> movies = new ArrayList<>(response.body().getMovies());
-                    movieRecyclerUpComingAdapter.setmMovies(movies);
-                }else{
-                    try {
-                        Log.e("Cledata", "Response error" + response.errorBody().toString());
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MovieListResponse> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void  GetRetrofitResponseRecommendations(MovieModel movieModel){
-        final int limit = 6;
-        MovieApi movieApi = Services.getMovieApi();
-        //based_text.setText("Basado en "+movieModel.getTitle());
-        result_text.setText(R.string.result);
-        Call<MovieListResponse> responseCall = movieApi.recommendations(movieModel.getId(), Credenciales.API_KEY);
-
-        responseCall.enqueue(new Callback<MovieListResponse>() {
-            @Override
-            public void onResponse(Call<MovieListResponse> call, Response<MovieListResponse> response) {
-                if (response.code() == 200){
-                    List<MovieModel> _movies = new ArrayList<>(response.body().getMovies());
-                    if(_movies.size() == 0){
-                        result_text.setText(R.string.result);
-                    }else{
-                        result_text.setText("Mostrando: "+ String.valueOf(limit) + " de "+ String.valueOf(response.body().getTotal_results()));
-                    }
-                    List<MovieModel> movies = new ArrayList<>();
-                    int l =limit;
-                    if(_movies.size() < limit ){
-                        l = _movies.size();
-                    }
-                    for (int i = 0; i < l; i++) {
-                        movies.add(_movies.get(i));
-                    }
-                    //movieRecyclerRecommendationsAdapter.setmMovies(movies);
+                    moviesUpComing = new ArrayList<>(response.body().getMovies());
+                    movieRecyclerUpComingAdapter.setmMovies(moviesUpComing);
                 }else{
                     try {
                         Log.e("Cledata", "Response error" + response.errorBody().toString());
@@ -228,15 +183,15 @@ public class MainActivity extends AppCompatActivity implements OnMovieListerner 
                     }else{
                         result_text.setText("Mostrando: "+ String.valueOf(limit) + " de "+ String.valueOf(response.body().getTotal_results()));
                     }
-                    List<MovieModel> movies = new ArrayList<>();
+                    moviesDiscover = new ArrayList<>();
                     int l =limit;
                     if(_movies.size() < limit ){
                         l = _movies.size();
                     }
                     for (int i = 0; i < l; i++) {
-                        movies.add(_movies.get(i));
+                        moviesDiscover.add(_movies.get(i));
                     }
-                    movieRecyclerDiscoverAdapter.setmMovies(movies);
+                    movieRecyclerDiscoverAdapter.setmMovies(moviesDiscover);
                 }else{
                     try {
                         Log.e("Cledata", "Response error" + response.errorBody().toString());
@@ -255,13 +210,28 @@ public class MainActivity extends AppCompatActivity implements OnMovieListerner 
 
     @Override
     public void onMovieClick(int p, String type) {
-        if(type == "trending"){
-            MovieModel movieModel = moviesTrending.get(p);
-            Log.e("Cledata", "onMovieClick: ."+ movieModel.getId() );
-            Log.e("Cledata", "onMovieClick: ."+ movieModel.getTitle() );
-            //GetRetrofitResponseRecommendations(movieModel);
+        MovieModel movieModel = null;
+        switch (type) {
+            case "trending":
+                movieModel = moviesTrending.get(p);
+                break;
+            case "upcoming":
+                movieModel = moviesUpComing.get(p);
+                break;
+            case "discover":
+                movieModel = moviesDiscover.get(p);
+                break;
         }
-        Log.e("Cledata", "Position" + p);
-        Log.e("Cledata", "type:"+ type);
+
+        if(movieModel != null){
+            Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+            Bundle b = new Bundle();
+            b.putInt("id", movieModel.getId()); //Your id
+            intent.putExtras(b); //Put your id to your next Intent
+            startActivity(intent);
+        }
+
+
+
     }
 }

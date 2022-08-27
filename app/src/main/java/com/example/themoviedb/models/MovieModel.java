@@ -9,20 +9,27 @@ public class MovieModel implements Parcelable {
     private String title;
     private String poster_path;
     private int id;
-    private int total_results;
+    private String release_date;
+    private String original_language;
+    private float vote_average;
 
 
-    public MovieModel(String title, String poster_path, int id, int total_results) {
+    public MovieModel(String title, String poster_path, int id, String release_date, String original_language, float vote_average) {
         this.title = title;
         this.poster_path = poster_path;
         this.id = id;
+        this.release_date = release_date;
+        this.original_language = original_language;
+        this.vote_average = vote_average;
     }
 
     protected MovieModel(Parcel in) {
         title = in.readString();
         poster_path = in.readString();
         id = in.readInt();
-        total_results = in.readInt();
+        release_date = in.readString();
+        original_language = in.readString();
+        vote_average = in.readFloat();
     }
 
     public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
@@ -49,8 +56,16 @@ public class MovieModel implements Parcelable {
         return id;
     }
 
-    public int getTotal_results() {
-        return total_results;
+    public String getRelease_date() {
+        return release_date;
+    }
+
+    public String getOriginal_language() {
+        return original_language;
+    }
+
+    public float getVote_average() {
+        return vote_average;
     }
 
     public void setTitle(String title) {
@@ -65,8 +80,17 @@ public class MovieModel implements Parcelable {
         this.id = id;
     }
 
-    public void setTotal_results(int total_results) {
-        this.total_results = total_results;
+
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
+    }
+
+    public void setOriginal_language(String original_language) {
+        this.original_language = original_language;
+    }
+
+    public void setVote_average(float vote_average) {
+        this.vote_average = vote_average;
     }
 
     @Override
@@ -79,6 +103,8 @@ public class MovieModel implements Parcelable {
         parcel.writeString(title);
         parcel.writeString(poster_path);
         parcel.writeInt(id);
-        parcel.writeInt(total_results);
+        parcel.writeString(release_date);
+        parcel.writeString(original_language);
+        parcel.writeFloat(vote_average);
     }
 }

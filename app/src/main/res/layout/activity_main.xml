@@ -14,27 +14,28 @@
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/logo_marca" />
+        android:contentDescription="@string/test"
+        app:srcCompat="@drawable/bran_logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/proximos_estrenos"
+        android:text="@string/next_releases"
         android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"></TextView>
+        android:textColor="@color/white"
+        android:textSize="20sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:id="@+id/recyclerViewUpComig" />
+        android:layout_height="wrap_content" android:id="@+id/recyclerViewUpComing" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tendencia"
+        android:text="@string/trend"
         android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"></TextView>
+        android:textColor="@color/white"
+        android:textSize="20sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -43,35 +44,35 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/recomendados"
+        android:text="@string/recommended"
         android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"></TextView>
+        android:textColor="@color/white"
+        android:textSize="20sp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
+            android:textSize="11sp"
             android:textColor="@color/white"
             app:strokeColor="@color/white"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_margin="2dp"
             app:cornerRadius="12dp"
-            android:id="@+id/btn_espaniol"
-            android:text="@string/btn_espaniol"></com.google.android.material.button.MaterialButton>
+            android:id="@+id/btn_filter_spanish"
+            android:text="@string/btn_spanish"/>
         <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
+            android:textSize="11sp"
             android:textColor="@color/white"
             app:strokeColor="@color/white"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_margin="2dp"
             app:cornerRadius="12dp"
-            android:id="@+id/btn_1993"
-            android:text="@string/btn_1993"></com.google.android.material.button.MaterialButton>
+            android:id="@+id/btn_filter_1993"
+            android:text="@string/btn_1993"/>
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -79,7 +80,7 @@
         android:text="@string/result"
         android:id="@+id/result_text"
         android:textColor="#FFFFFF"
-        android:textSize="10sp"></TextView>
+        android:textSize="11sp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" android:id="@+id/recyclerViewDiscover" />

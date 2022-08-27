@@ -4,7 +4,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/logo_marca"></bitmap>
+            android:src="@drawable/bran_logo"></bitmap>
     </item>
 
 </layer-list>

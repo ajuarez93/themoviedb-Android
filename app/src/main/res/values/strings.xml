@@ -1,12 +1,14 @@
 <resources>
     <string name="app_name">themoviedb</string>
-    <string name="proximos_estrenos">Próximos estrenos</string>
-    <string name="tendencia">Tendencia</string>
-    <string name="recomendados">Recomendados para ti</string>
-    <string name="btn_espaniol">En español</string>
+    <string name="next_releases">Próximos estrenos</string>
+    <string name="trend">Tendencia</string>
+    <string name="recommended">Recomendados para ti</string>
+    <string name="btn_spanish">En español</string>
     <string name="btn_1993">Lanzadas en 1993</string>
     <string name="based">Debe de seleccionar una pelicula de Tendencias para ver las recomendados</string>
     <string name="result">No se han encontrado resultados para la pelicula seleccionada, favor de seleccionar otra</string>
     <string name="position_not_selected">Debe de seleccionar una pelicula para ver poder utilizar los filtros</string>
-
+    <string name="movie_plot">Movie plot</string>
+    <string name="test"> Test</string>
+    <string name="watch_trailer">Ver trailer</string>
 </resources>
