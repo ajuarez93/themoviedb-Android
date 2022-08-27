@@ -18,14 +18,14 @@ import java.util.List;
 public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<MovieModel> mMovies;
-    private boolean imageFull;
+    private int imageType;
     private String type;
 
     private OnMovieListerner onMovieListerner;
 
-    public MovieRecyclerView(OnMovieListerner onMovieListerner, boolean imageFull, String type) {
+    public MovieRecyclerView(OnMovieListerner onMovieListerner, int imageType, String type) {
         this.onMovieListerner = onMovieListerner;
-        this.imageFull = imageFull;
+        this.imageType = imageType;
         this.type = type;
     }
 
@@ -40,8 +40,11 @@ public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ImageView imageView = ((MovieViewHolder) holder).movie_image;
-        if(this.imageFull){
+        if(this.imageType == 1){
             imageView.getLayoutParams().height = 420;
+        }
+        if(this.imageType == 2){
+            imageView.getLayoutParams().height = 220;
         }
         Glide.with(holder.itemView.getContext()).load(Credenciales.URL_IMAGES +mMovies.get(position).getPoster_path()).into(imageView);
     }

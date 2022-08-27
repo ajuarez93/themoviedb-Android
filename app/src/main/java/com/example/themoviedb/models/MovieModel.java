@@ -3,6 +3,10 @@ package com.example.themoviedb.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.themoviedb.response.MovieListResponse;
+
+import java.util.List;
+
 public class MovieModel implements Parcelable {
     // Clase para nuestras peliculas
 
@@ -12,15 +16,21 @@ public class MovieModel implements Parcelable {
     private String release_date;
     private String original_language;
     private float vote_average;
+    private List<CompaniesModel> production_companies;
+    private List<GenresModel> genres;
+    private String overview;
 
 
-    public MovieModel(String title, String poster_path, int id, String release_date, String original_language, float vote_average) {
+    public MovieModel(String title, String poster_path, int id, String release_date, String original_language, float vote_average, List<CompaniesModel> production_companies, List<GenresModel> genres, String overview) {
         this.title = title;
         this.poster_path = poster_path;
         this.id = id;
         this.release_date = release_date;
         this.original_language = original_language;
         this.vote_average = vote_average;
+        this.production_companies = production_companies;
+        this.genres = genres;
+        this.overview = overview;
     }
 
     protected MovieModel(Parcel in) {
@@ -30,6 +40,9 @@ public class MovieModel implements Parcelable {
         release_date = in.readString();
         original_language = in.readString();
         vote_average = in.readFloat();
+        production_companies = in.readArrayList(CompaniesModel.class.getClassLoader());
+        genres = in.readArrayList(GenresModel.class.getClassLoader());
+        overview = in.readString();
     }
 
     public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
@@ -93,6 +106,31 @@ public class MovieModel implements Parcelable {
         this.vote_average = vote_average;
     }
 
+
+    public List<CompaniesModel> getProduction_companies() {
+        return production_companies;
+    }
+
+    public void setProduction_companies(List<CompaniesModel> production_companies) {
+        this.production_companies = production_companies;
+    }
+
+    public List<GenresModel> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<GenresModel> genres) {
+        this.genres = genres;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -106,5 +144,8 @@ public class MovieModel implements Parcelable {
         parcel.writeString(release_date);
         parcel.writeString(original_language);
         parcel.writeFloat(vote_average);
+        parcel.writeList(production_companies);
+        parcel.writeList(genres);
+        parcel.writeString(overview);
     }
 }

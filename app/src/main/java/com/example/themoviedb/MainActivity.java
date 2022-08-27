@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements OnMovieListerner 
         recyclerViewUpComing= findViewById(R.id.recyclerViewUpComing);
         recyclerViewDiscover= findViewById(R.id.recyclerViewDiscover);
         result_text = findViewById(R.id.result_text);
-
         btn_spanish =  findViewById(R.id.btn_filter_spanish);
         btn_1993 =  findViewById(R.id.btn_filter_1993);
 
@@ -102,9 +101,9 @@ public class MainActivity extends AppCompatActivity implements OnMovieListerner 
 
 
     private  void intAdapter(){
-        movieRecyclerTrendingAdapter = new MovieRecyclerView(this,false, "trending");
-        movieRecyclerUpComingAdapter = new MovieRecyclerView(this,false, "upcoming");
-        movieRecyclerDiscoverAdapter = new MovieRecyclerView(this,true, "discover");
+        movieRecyclerTrendingAdapter = new MovieRecyclerView(this,0, "trending");
+        movieRecyclerUpComingAdapter = new MovieRecyclerView(this,0, "upcoming");
+        movieRecyclerDiscoverAdapter = new MovieRecyclerView(this,1, "discover");
 
         recyclerViewTrending.setAdapter(movieRecyclerTrendingAdapter);
         recyclerViewTrending.setLayoutManager(new LinearLayoutManager(this,  LinearLayoutManager.HORIZONTAL, false ));
@@ -181,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieListerner 
                     if(_movies.size() == 0){
                         result_text.setText(R.string.result);
                     }else{
-                        result_text.setText("Mostrando: "+ String.valueOf(limit) + " de "+ String.valueOf(response.body().getTotal_results()));
+                        result_text.setText("Mostrando: "+ limit + " de "+ response.body().getTotal_results());
                     }
                     moviesDiscover = new ArrayList<>();
                     int l =limit;
